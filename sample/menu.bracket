@@ -1,0 +1,42 @@
+{
+    name: upgrade_ant_button
+    position_x: 226
+    position_y: 527
+    type: BUTTON
+    dimension: [83, 85]
+    color: [243, 244, 0, 1]
+    content: Upgrade Ant
+}
+
+{
+    name: upgrade_food_button
+    position_x: 470
+    position_y: 527
+    type: BUTTON
+    dimension: [83, 85]
+    color: [243, 244, 0, 1]
+    animated: true
+    content: Upgrade Food
+}
+
+{
+    name: more_ant
+    position_x: 729
+    position_y: 527
+    type: BUTTON
+    dimension: [243, 244, 0, 1]
+    color: [243, 24.4, 0, 1]
+    animated: true
+    content: Add Ant
+}
+
+{
+    name: amount_money
+    position_x: 128 
+    position_y: 119
+    type: TEXT
+    dimension: [30]
+    color: [255, 255, 255, 1]
+    animated: true
+    content: Money
+}
