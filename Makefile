@@ -25,8 +25,15 @@ UT_NAME	=	unit_test
 
 CC	=	g++
 
-all	:	$(OBJ) $(MAIN)
+LIBNAME	=	libparser.a
+
+all	:	$(NAME)
+
+$(NAME)	:	$(OBJ) $(MAIN)
 	$(CC) $(CXXFLAGS) $(OBJ) $(MAIN) -o $(NAME) $(LDFLAGS)
+
+lib	:	$(OBJ)
+	ar rc $(LIBNAME) $(OBJ)
 
 clean	:
 		$(RM) $(OBJ)
@@ -35,6 +42,7 @@ clean	:
 fclean	:	clean
 		$(RM) $(NAME)
 		$(RM) $(UT_NAME)
+		$(RM) $(LIBNAME)
 
 re	:	fclean all
 
