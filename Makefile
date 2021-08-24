@@ -1,5 +1,3 @@
-NAME	=	parser
-
 SRC	=	src/Utils/Utils.cpp							\
 		src/BracketParser/BracketParser.cpp			\
 		src/BracketParser/Block/Block.cpp			\
@@ -9,9 +7,7 @@ SRC	=	src/Utils/Utils.cpp							\
 
 OBJ	=	$(SRC:.cpp=.o)
 
-UT_SRC 	=	
-
-MAIN	=	src/main.cpp
+UT_SRC 	=	tests/main.cpp
 
 UT_OBJ	=	$(UT_SRC:.cpp=.o)
 
@@ -23,33 +19,32 @@ CXXFLAGS	+=	 -I ./include
 
 UT_NAME	=	unit_test
 
+LIBFOLDER	=	./lib
+
 CC	=	g++
 
 LIBNAME	=	libparser.a
 
-all	:	$(NAME)
+all	:	$(LIBNAME)
 
-$(NAME)	:	$(OBJ) $(MAIN)
-	$(CC) $(CXXFLAGS) $(OBJ) $(MAIN) -o $(NAME) $(LDFLAGS)
-
-lib	:	$(OBJ)
+$(LIBNAME)	:	$(OBJ) $(MAIN)
 	ar rc $(LIBNAME) $(OBJ)
+	mv $(LIBNAME) $(LIBFOLDER)
 
 clean	:
 		$(RM) $(OBJ)
 		$(RM) $(UT_OBJ)
 
 fclean	:	clean
-		$(RM) $(NAME)
 		$(RM) $(UT_NAME)
-		$(RM) $(LIBNAME)
+		$(RM) $(LIBFOLDER)/$(LIBNAME)
 
 re	:	fclean all
 
 tests_run:	CFLAGS += --coverage
-tests_run:	LDFLAGS	+=	-lcriterion
-tests_run	:	$(UT_OBJ)
-	$(CC) $(UT_OBJ) -o $(UT_NAME) $(LDFLAGS) $(CFLAGS)
+tests_run:	LDFLAGS += -lgtest -lgtest_main -pthread -L$(LIBFOLDER) -lparser
+tests_run	:	$(LIBNAME) $(UT_OBJ)
+	$(CC) $(UT_OBJ) -o $(UT_NAME) $(LDFLAGS) $(CXXFLAGS) $(CFLAGS)
 	./$(UT_NAME)
 
 .PHONY	:	all clean fclean re

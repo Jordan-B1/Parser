@@ -1,6 +1,28 @@
 #include "BracketParser/BracketParser.hpp"
 
-int main()
+#include <gtest/gtest.h>
+
+TEST(BracketParser, getData)
+{
+    BasicParser::BracketParser p;
+    p.loadFromFile("sample/menu.bracket");
+    auto tab = p.searchDocument({
+        {"position_y", "527"},
+    });
+    EXPECT_EQ(3, tab.size());
+    EXPECT_EQ("upgrade_ant_button", tab[0].get<std::string>("name"));
+    EXPECT_EQ("upgrade_food_button", tab[1].get<std::string>("name"));
+    EXPECT_EQ("more_ant", tab[2].get<std::string>("name"));
+}
+
+
+int main(int ac, char **av)
+{
+    testing::InitGoogleTest(&ac, av);
+    return RUN_ALL_TESTS();
+}
+
+/*int main()
 {
     BasicParser::BracketParser p;
 
@@ -26,4 +48,4 @@ int main()
         std::cerr << "no color found..." << std::endl;
     }
     return 0;
-}
+}*/
