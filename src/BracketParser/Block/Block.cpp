@@ -117,9 +117,9 @@ std::vector<int> Bracket::Block::get<std::vector<int>>(const std::string &field)
     {
         return {};
     }
-    value = this->_values.at(field); // [3, 5, 2]
+    value = this->_values.at(field);
     value.pop_back();
-    value.erase(value.begin()); // 3, 5, 2
+    value.erase(value.begin());
     token = std::strtok(strdup(value.c_str()), ",");
     while (token.c_str())
     {
@@ -160,9 +160,9 @@ std::vector<float> Bracket::Block::get<std::vector<float>>(const std::string &fi
     {
         return {};
     }
-    value = this->_values.at(field); // [3, 5, 2]
+    value = this->_values.at(field);
     value.pop_back();
-    value.erase(value.begin()); // 3, 5, 2
+    value.erase(value.begin());
     token = std::strtok(strdup(value.c_str()), ",");
     while (token.c_str())
     {
@@ -199,9 +199,9 @@ std::vector<std::string> Bracket::Block::get<std::vector<std::string>>(const std
     {
         return {};
     }
-    value = this->_values.at(field); // [3, 5, 2]
+    value = this->_values.at(field);
     value.pop_back();
-    value.erase(value.begin()); // 3, 5, 2
+    value.erase(value.begin());
     token = std::strtok(strdup(value.c_str()), ",");
     while (!token.empty())
     {
